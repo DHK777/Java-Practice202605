@@ -1,4 +1,4 @@
-package loop;
+package basic.loop;
 
 public class LoopNesting {
     public static void main(String[] args) {

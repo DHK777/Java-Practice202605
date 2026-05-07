@@ -1,4 +1,4 @@
-package constate;
+package basic.constate;
 
 public class SwitcjExample {
     public static void main(String[] args) {

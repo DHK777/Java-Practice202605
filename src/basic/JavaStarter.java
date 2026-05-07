@@ -1,4 +1,4 @@
-import java.rmi.StubNotFoundException;
+package basic;
 
 public class JavaStarter {
     public static void main(String[] args) {
