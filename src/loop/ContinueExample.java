@@ -9,13 +9,14 @@ public class ContinueExample {
             System.out.print(i + " ");
         }
         System.out.println("\n================================================");
-    }
-    int a = 1;
-    while (a <= 10) {
-        if (a == 5) {
-            continue;
+        int a = 1;
+        while (a <= 10) {
+            if (a == 5) {
+                System.out.println("n은 5에 갇혔다! 무한 루프 도는 중...");
+                continue;
+            }
+            System.out.println(a + " ");
+            a++;
         }
-        System.out.println(a + " ");
-        a++;
     }
 }
