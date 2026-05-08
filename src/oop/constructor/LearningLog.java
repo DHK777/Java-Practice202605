@@ -18,9 +18,10 @@ public class LearningLog {
 
     LearningLog(String title, int minutes) {
         // this() 문법으로 자기 자신의 다른 생성자를 호출하는 것이 가능합니다.
-        //this.title = title;
-        //this.minutes = minutes;
-        //publicLog = true;
+        // 생성자 체이닝
+        // this.title = title;
+        // this.minutes = minutes;
+        // publicLog = true;
         this(title, minutes, true);
     }
 
