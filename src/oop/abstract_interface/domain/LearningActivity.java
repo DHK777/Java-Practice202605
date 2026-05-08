@@ -1,0 +1,81 @@
+package oop.abstract_interface.domain;
+
+public abstract class LearningActivity {
+
+    private static int totalCreatCount = 0;
+
+    private final long id;
+    private String title;
+    private int minutes;
+    private boolean publicActivity;
+
+//    LearningActivity() {
+//        System.out.println("기본 생성자 호출!");
+//        totalCreatCount++;
+//        this.id = totalCreatCount;
+//    }
+
+    public LearningActivity(String title, int minutes) {
+        this(title, minutes, true);
+    }
+
+    public LearningActivity(String title, int minutes, boolean publicActivity) {
+        totalCreatCount++;
+        this.id = totalCreatCount;
+        this.title = normalizeTitle(title);
+        this.minutes = minutes;
+        this.publicActivity = publicActivity;
+    }
+
+    public void setMinutes(int minutes) {
+        if (minutes <= 0) {
+            System.out.println("학습 시간은 0보다 커야 합니다.");
+            return;
+        }
+        this.minutes = minutes;
+    }
+
+    public void changeTitle(String newTitle) {
+        this.title = normalizeTitle(newTitle);;
+    }
+
+    private String normalizeTitle(String newTitle) {
+        if (newTitle == null || newTitle.isBlank()) {
+            return "제목 없음";
+        }
+        return newTitle;
+    }
+
+    public void openToPublic() {
+        this.publicActivity = true;
+    }
+
+    public void hideFormPublic() {
+        this.publicActivity = false;
+    }
+
+    public abstract void printSummary();
+
+    public static int getTotalCreatCount() {
+        return totalCreatCount;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    // 추상메서드는 메서드 바디가 없는 메서드의 틀 역할을 합니다.
+    // 특정 메서드는 부모가 대충 정해버리는 것보다, 자식이 반드시 자기 방식대로 구현하게 하는 편이 명확할 때가 있습니다.
+    //
+    public boolean ispublicActivity() {
+        return publicActivity;
+    }
+
+    protected long getId() {
+        return id;
+    }
+}
