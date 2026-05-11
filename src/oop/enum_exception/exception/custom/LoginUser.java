@@ -13,7 +13,7 @@ public class LoginUser {
 
     // 로그인 검증 기능
     public String authenticate(String inputAccount, String inputPassword)
-            throws Exception {
+            throws LoginInvalidException {
 
         // 문자열 값을 비교할 때는 equals() 메서드를 사용해야 합니다.
         if (!this.account.equals(inputAccount)) {

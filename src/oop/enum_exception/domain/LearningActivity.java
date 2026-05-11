@@ -1,5 +1,7 @@
 package oop.enum_exception.domain;
 
+import oop.enum_exception.exception.InvalidActivityException;
+
 public abstract class LearningActivity {
 
     private static int totalCreatCount = 0;
@@ -21,31 +23,43 @@ public abstract class LearningActivity {
 //    }
 
     public LearningActivity(String title, int minutes, Visibility visibility, ActivityCategory category) {
+        validateTitle(title);
+        validateMinutes(minutes);
         totalCreatCount++;
         this.id = totalCreatCount;
-        this.title = normalizeTitle(title);
+        this.title = title.trim(); // 좌우 공백 제거
         this.minutes = minutes;
         this.visibility = visibility;
         this.category = category;
     }
 
+    public static int getTotalCreatedCount() {
+        return totalCreatCount;
+    }
+
     public void setMinutes(int minutes) {
         if (minutes <= 0) {
-            System.out.println("학습 시간은 0보다 커야 합니다.");
-            return;
+            throw new InvalidActivityException(
+                    "추가 학습 시간은 1분 이상이어야 합니다. 입력값: " + minutes);
         }
-        this.minutes = minutes;
+        this.minutes += minutes;
     }
 
     public void changeTitle(String newTitle) {
-        this.title = normalizeTitle(newTitle);;
+        validateTitle(newTitle);
+        this.title = newTitle;;
     }
 
-    private String normalizeTitle(String newTitle) {
+    private void validateTitle(String newTitle) {
         if (newTitle == null || newTitle.isBlank()) {
-            return "제목 없음";
+            throw new InvalidActivityException("합습 제목은 비워둘 수 없습니다.");
         }
-        return newTitle;
+    }
+
+    private void validateMinutes(int newMinutes) {
+        if (newMinutes <= 0) {
+            throw new InvalidActivityException("학습 시간은 1분 이상이여야 합니다." + newMinutes);
+        }
     }
 
     public void openToPublic() {
