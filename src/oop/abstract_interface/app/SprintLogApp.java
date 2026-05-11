@@ -6,6 +6,9 @@ import oop.abstract_interface.domain.PracticeLog;
 import oop.abstract_interface.domain.ReadingLog;
 import oop.abstract_interface.policy.Reviewable;
 import oop.abstract_interface.policy.Shareable;
+import oop.abstract_interface.printer.ActivityPrinter;
+import oop.abstract_interface.printer.CompactActivityPrinter;
+import oop.abstract_interface.printer.ConsolActivityPrinter;
 
 public class SprintLogApp {
     public static void main(String[] args) {
@@ -17,14 +20,20 @@ public class SprintLogApp {
         // 추상클래스는 스스로의 객체를 생성할 수 없고, 자식에 의해서 생성될 뿐입니다.
         // LearningActivity act = new LearningActivity("test", 10);
 
-        Reviewable[] reviewables = {javaLecture, gitPractice, oopPractice, oopBook};
+        LearningActivity[] activitys = {javaLecture, gitPractice, oopPractice, oopBook};
+        ActivityPrinter printer = new ConsolActivityPrinter();
+        ActivityPrinter printer2 = new CompactActivityPrinter();
 
         System.out.println();
         System.out.println("=== 학습 활동 목록 ===");
-        for (Reviewable reviewable : reviewables) {
-            if (reviewable.needsReview()) {
-                reviewable.printReviewTarget();
-            }
+        for (int i = 0; i < activitys.length; i++) {
+            printer.print(activitys[i]);
+        }
+
+        System.out.println();
+        System.out.println("=== 간단 활동 목록 ===");
+        for (int i = 0; i < activitys.length; i++) {
+            printer2.print(activitys[i]);
         }
 
         Shareable[] shareables = {javaLecture, gitPractice, oopPractice, oopBook};

@@ -54,10 +54,15 @@ public abstract class LearningActivity {
         this.publicActivity = false;
     }
 
-    public abstract void printSummary();
+    public abstract String getAcivityType();
+    public abstract String getDetailText();
 
     public static int getTotalCreatCount() {
         return totalCreatCount;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -75,7 +80,11 @@ public abstract class LearningActivity {
         return publicActivity;
     }
 
-    protected long getId() {
-        return id;
+    public String getVisibilityText() {
+        return publicActivity ? "공개" : "비공개";
+    }
+
+    public String getActivityType() {
+        return getAcivityType();
     }
 }

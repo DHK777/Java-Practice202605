@@ -13,11 +13,6 @@ public class LectureLog extends LearningActivity implements Reviewable, Shareabl
         this.instructorName = normalizeInstructorName(instructorName);
     }
 
-    @Override
-    public void printSummary() {
-        System.out.println("[강의] #" + getId() + " " + getTitle() + " - " + getMinutes()
-                + "분 - 강사: " + instructorName);
-    }
 
     @Override
     public boolean needsReview() {
@@ -26,7 +21,7 @@ public class LectureLog extends LearningActivity implements Reviewable, Shareabl
 
     @Override
     public void printReviewTarget() {
-        System.out.println("강의 제목: " + getTitle() + ", 강사: " + instructorName);
+        System.out.println("[복습 권장]: " + getTitle() + " (" + getMinutes() + "분");
     }
 
     // 이 메서드는 부모가 물려준 게 아니라
@@ -49,5 +44,15 @@ public class LectureLog extends LearningActivity implements Reviewable, Shareabl
     @Override
     public String getShareTitle() {
         return getTitle();
+    }
+
+    @Override
+    public String getAcivityType() {
+        return "강의";
+    }
+
+    @Override
+    public String getDetailText() {
+        return "강사";
     }
 }
