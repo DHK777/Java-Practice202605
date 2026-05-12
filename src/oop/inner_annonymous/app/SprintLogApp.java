@@ -56,6 +56,8 @@ public class SprintLogApp {
         };
 
         dashboard.new ReportBuilder(compactPrinter).print();
+
+        // Unified Modeling Language (UML)
     }
 }
 
