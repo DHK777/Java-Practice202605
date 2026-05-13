@@ -75,24 +75,47 @@ public class Main {
 
         // 색깔이 빨강 혹은 촉록이면서, 무게는 150g 미만이어야 합니다.
         // 논리 연산에서 and가 or보다 우선입니다!
-        List<Apple> apples3 = FilterApple.filterApple(appleBasket, new ApplePredicate() {
+        List<Apple> apples4_3 = FilterApple.filterApple(appleBasket, new ApplePredicate() {
             @Override
             public boolean test(Apple apple) {
                 return (apple.getColor() == RED || apple.getColor() == GREEN)
                         && apple.getWeight() < 150;
             }
         });
+        for (Apple apple : apples4_3) {
+            System.out.println(apple);
+        }
+
+        System.out.println("======================================");
+
+        // 색깔이 빨강 혹은 촉록이면서, 무게는 150g 초과이어야 합니다.
+        // 논리 연산에서 and가 or보다 우선입니다!
+        List<Apple> apples3 = FilterApple.filterApple(appleBasket,
+                apple -> (apple.getColor() == RED
+                        || apple.getColor() == GREEN)
+                        && apple.getWeight() > 150);
         for (Apple apple : apples3) {
             System.out.println(apple);
         }
 
         System.out.println("======================================");
 
-        List<Apple> apples4 = FilterApple.filterApple(appleBasket,
-                apple -> (apple.getColor() == RED || apple.getColor() == GREEN)
-                        && apple.getWeight() < 150);
-        for (Apple apple : apples4) {
-            System.out.println(apple);
-        }
+        // 여러가지 타입의 객체를 필터링
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> filter1 = FilterApple.filter(numbers, n -> n % 2 == 0);
+        System.out.println(filter1);
+
+        List<Integer> filter2 = FilterApple.filter(numbers, new GenericPredicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer % 2 == 0;
+            }
+        });
+
+
+        List<String> foods = List.of("짜장면", "짬뽕", "탕수육", "군만두", "양장피");
+        List<String> filter3 = FilterApple.filter(foods, food -> food.length() == 3);
+
+
     }
 }
